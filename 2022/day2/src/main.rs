@@ -1,7 +1,6 @@
-use std::io::{BufReader};
-use std::io::prelude::*;
 use std::fs::File;
-
+use std::io::prelude::*;
+use std::io::BufReader;
 
 fn read_lines(filename: &str) -> Vec<String> {
     let f = File::open(filename).unwrap();
@@ -9,9 +8,8 @@ fn read_lines(filename: &str) -> Vec<String> {
     return f.lines().map(|x| x.unwrap()).collect();
 }
 
-
 fn part_1() {
-    let lines : Vec<String> = read_lines("input.txt");
+    let lines: Vec<String> = read_lines("input.txt");
     let mut total_score = 0;
     let mut curr_score = 0;
 
@@ -24,12 +22,12 @@ fn part_1() {
             "X" => 1,
             "Y" => 2,
             "Z" => 3,
-            _ => 0,
+            _ => unreachable!(),
         };
 
         curr_score += match (opponent, mine) {
-            ("A", "X")|("B", "Y")|("C","Z") => 3,
-            ("A", "Y")|("B", "Z")|("C","X") => 6,
+            ("A", "X") | ("B", "Y") | ("C", "Z") => 3,
+            ("A", "Y") | ("B", "Z") | ("C", "X") => 6,
             _ => 0,
         };
 
@@ -41,7 +39,7 @@ fn part_1() {
 }
 
 fn part_2() {
-    let lines : Vec<String> = read_lines("input.txt");
+    let lines: Vec<String> = read_lines("input.txt");
     let mut total_score = 0;
     let mut curr_score = 0;
 
@@ -51,15 +49,15 @@ fn part_2() {
         let choice = split.next().unwrap();
 
         let mine = match (opponent, choice) {
-            ("A","Y")|("C", "Z")|("B", "X") => "X",
-            ("B","Y")|("A", "Z")|("C", "X") => "Y",
-            ("C","Y")|("B", "Z")|("A", "X") => "Z",
-            _ => "X",
+            ("A", "Y") | ("C", "Z") | ("B", "X") => "X",
+            ("B", "Y") | ("A", "Z") | ("C", "X") => "Y",
+            ("C", "Y") | ("B", "Z") | ("A", "X") => "Z",
+            _ => unreachable!(),
         };
 
         curr_score += match (opponent, mine) {
-            ("A", "X")|("B", "Y")|("C","Z") => 3,
-            ("A", "Y")|("B", "Z")|("C","X") => 6,
+            ("A", "X") | ("B", "Y") | ("C", "Z") => 3,
+            ("A", "Y") | ("B", "Z") | ("C", "X") => 6,
             _ => 0,
         };
 
@@ -76,7 +74,6 @@ fn part_2() {
 
     println!("Total: {}", total_score);
 }
-
 
 fn main() {
     part_1();
