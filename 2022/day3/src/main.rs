@@ -13,22 +13,20 @@ fn get_priority(c: char) -> u32 {
     // a = 97, A = 65
     if priority > 96 {
         priority -= 96;
-    }
-    else {
+    } else {
         priority -= 38;
     }
 
-    return priority; 
+    return priority;
 }
-
 
 fn part_1() {
     let lines: Vec<String> = read_lines("input.txt");
-    let mut total :u32 = 0;
+    let mut total: u32 = 0;
 
-    for l in lines.iter() {
+    for l in lines {
         let len = l.len();
-        let (r1, r2) = l.split_at(len/2);
+        let (r1, r2) = l.split_at(len / 2);
 
         let mut common = ' ';
 
@@ -44,10 +42,9 @@ fn part_1() {
     println!("Total: {}", total);
 }
 
-
 fn part_2() {
     let lines: Vec<String> = read_lines("input.txt");
-    let mut total :u32 = 0;
+    let mut total: u32 = 0;
 
     for chunk in lines.chunks_exact(3) {
         let mut common = ' ';
@@ -64,7 +61,6 @@ fn part_2() {
     }
     println!("Total: {}", total);
 }
-
 
 fn main() {
     part_1();
